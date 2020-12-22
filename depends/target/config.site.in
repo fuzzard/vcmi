@@ -1,0 +1,38 @@
+if test "@cross_compiling@" = "yes"; then
+cross_compiling=yes
+host=@use_host@
+host_alias=@use_host@
+fi
+
+LD="@LD@"
+CC="@CCACHE@ @CC@"
+CXX="@CCACHE@ @CXX@"
+AR="@AR@"
+AS="@AS@"
+NM="@NM@"
+STRIP="@STRIP@"
+RANLIB="@RANLIB@"
+OBJDUMP="@OBJDUMP@"
+
+if test "@platform_os@" = "darwin_embedded" ; then
+  export AS="@prefix@/@tool_dir@/bin/gas-preprocessor.pl @CCACHE@ @CC@ -arch @use_cpu@"
+  export CCAS="--tag CC @prefix@/@tool_dir@/bin/gas-preprocessor.pl @CCACHE@ @CC@ -arch @use_cpu@"
+fi
+
+CFLAGS="@platform_cflags@ @platform_includes@ -isystem @prefix@/@deps_dir@/include $CFLAGS"
+LDFLAGS="-L@prefix@/@deps_dir@/lib @platform_ldflags@ $LDFLAGS"
+CXXFLAGS="@platform_cxxflags@ @platform_includes@ -isystem @prefix@/@deps_dir@/include $CXXFLAGS"
+
+PATH=@prefix@/@tool_dir@/bin:@use_toolchain@/usr/bin:@use_toolchain@/bin:$PATH
+LD_LIBRARY_PATH=@prefix@/@tool_dir@/lib:$LD_LIBRARY_PATH
+
+NATIVE_ROOT=@prefix@/@tool_dir@
+
+#gnutls
+gl_cv_func_gettimeofday_clobber=no
+
+if test "@platform_os@" = "darwin_embedded"; then
+  # there is no clock_settime on iOS/tvOS as of latest version 13.X
+  ac_cv_func_clock_settime=no
+
+fi
