@@ -83,5 +83,6 @@ NATIVE_CXXFLAGS=@host_includes@ -I@prefix@/@tool_dir@/include
 export AUTOM4TE=@prefix@/@tool_dir@/bin/autom4te
 export AUTOCONF=@prefix@/@tool_dir@/bin/autoconf
 export AUTOHEADER=@prefix@/@tool_dir@/bin/autoheader
+export AUTOPOINT=@prefix@/@tool_dir@/bin/autopoint
 
 export AUTORECONF=@prefix@/@tool_dir@/bin/autoreconf

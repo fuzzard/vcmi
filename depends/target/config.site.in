@@ -23,6 +23,10 @@ CFLAGS="@platform_cflags@ @platform_includes@ -isystem @prefix@/@deps_dir@/inclu
 LDFLAGS="-L@prefix@/@deps_dir@/lib @platform_ldflags@ $LDFLAGS"
 CXXFLAGS="@platform_cxxflags@ @platform_includes@ -isystem @prefix@/@deps_dir@/include $CXXFLAGS"
 
+export PKG_CONFIG=@prefix@/@tool_dir@/bin/pkg-config
+export PKG_CONFIG_LIBDIR=@prefix@/@deps_dir@/lib/pkgconfig
+export NASM=@prefix@/@tool_dir@/bin/nasm
+
 PATH=@prefix@/@tool_dir@/bin:@use_toolchain@/usr/bin:@use_toolchain@/bin:$PATH
 LD_LIBRARY_PATH=@prefix@/@tool_dir@/lib:$LD_LIBRARY_PATH
 

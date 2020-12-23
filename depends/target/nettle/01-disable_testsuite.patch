@@ -5,7 +5,7 @@
  OPT_NETTLE_SOURCES = @OPT_NETTLE_SOURCES@
  
 -SUBDIRS = tools testsuite examples
-+SUBDIRS = tools examples
++SUBDIRS = tools
  
  include config.make
  
