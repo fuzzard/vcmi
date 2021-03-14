@@ -1,0 +1,49 @@
+import os ;
+local CFLAGS = [ os.environ CFLAGS ] ;
+local PLATFORM_INCLUDES = [ os.environ PLATFORM_INCLUDES ] ;
+local tmpCXXFLAGS = [ os.environ CXXFLAGS ] ;
+local LDFLAGS = [ os.environ LDFLAGS ] ;
+local PREFIX = [ os.environ PREFIX ] ;
+
+using darwin : $OS-3
+: $CC
+: <architecture>arm
+  <address-model>64
+  <target-os>iphone
+  <cflags>"$CFLAGS"
+  <cxxflags>"$CXXFLAGS"
+  <linkflags>"$LDFLAGS"
+  <compileflags>"$PLATFORM_INCLUDES"
+  <location>"$PREFIX"
+  <archiver>"/usr/bin/libtool"
+  <runtime-link>static
+  <threading>multi
+;
+using darwin : ~appletv
+: $CC
+: <architecture>arm
+  <address-model>64
+  <target-os>appletv
+  <cflags>"$CFLAGS"
+  <cxxflags>"$CXXFLAGS"
+  <linkflags>"$LDFLAGS"
+  <compileflags>"$PLATFORM_INCLUDES"
+  <location>"$PREFIX"
+  <archiver>"/usr/bin/libtool"
+  <runtime-link>static
+  <threading>multi
+;
+using darwin : macos
+: $CC
+: <architecture>x86
+  <target-os>darwin
+  <cflags>"$CFLAGS"
+  <cxxflags>"$CXXFLAGS"
+  <linkflags>"$LDFLAGS"
+  <compileflags>"$PLATFORM_INCLUDES"
+  <location>"$PREFIX"
+  <archiver>"/usr/bin/libtool"
+  <link>static  
+  <runtime-link>static
+  <threading>multi
+;

@@ -80,9 +80,14 @@ NATIVE_CFLAGS=@host_includes@ -I@prefix@/@tool_dir@/include
 NATIVE_LDFLAGS=@host_includes@ -L@prefix@/@tool_dir@/lib
 NATIVE_CXXFLAGS=@host_includes@ -I@prefix@/@tool_dir@/include
 
+# Used for boost user-config.jam
+export PLATFORM_INCLUDES=@platform_includes@
+
 export AUTOM4TE=@prefix@/@tool_dir@/bin/autom4te
 export AUTOCONF=@prefix@/@tool_dir@/bin/autoconf
 export AUTOHEADER=@prefix@/@tool_dir@/bin/autoheader
 export AUTOPOINT=@prefix@/@tool_dir@/bin/autopoint
+export LIBTOOL=@prefix@/@tool_dir@/bin/libtool
+export LIBTOOLIZE=@prefix@/@tool_dir@/bin/libtoolize
 
 export AUTORECONF=@prefix@/@tool_dir@/bin/autoreconf
